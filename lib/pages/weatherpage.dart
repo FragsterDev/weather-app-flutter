@@ -18,31 +18,28 @@ class _WeatherPageState extends State<WeatherPage> {
         child: Container(
           child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Color.fromARGB(255, 249, 249, 249)
-                ),
-                child: TextFormField(
-                  cursorHeight: 30,
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.fromLTRB(8,8,16,8),
-                      child: InkWell(
-                        onTap: () => {},
-                        child: Icon(Icons.search, size: 35,),
-                      ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Color.fromARGB(255, 249, 249, 249)
+              ),
+              child: TextFormField(
+                cursorHeight: 30,
+                decoration: InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.fromLTRB(8,8,16,8),
+                    child: InkWell(
+                      onTap: () => {},
+                      child: Icon(Icons.search, size: 35,),
                     ),
-                    contentPadding: EdgeInsets.all(15),
-                    label: Text('Search Location', style: TextStyle(fontSize: 20),),
-                    border: InputBorder.none,
-                    // border: OutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(20)
-                    // )
                   ),
+                  // contentPadding: EdgeInsets.all(15),
+                  label: Text('Search Location', style: TextStyle(fontSize: 20),),
+                  border: InputBorder.none,
+                  // border: OutlineInputBorder(
+                  //   borderRadius: BorderRadius.circular(20)
+                  // )
                 ),
               ),
             ),
