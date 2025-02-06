@@ -26,7 +26,9 @@ class _WeatherPageState extends State<WeatherPage> {
                   color: Color.fromARGB(255, 249, 249, 249)
                 ),
                 child: TextFormField(
+                  cursorHeight: 30,
                   decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     suffixIcon: Padding(
                       padding: const EdgeInsets.fromLTRB(8,8,16,8),
                       child: InkWell(
@@ -35,10 +37,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       ),
                     ),
                     contentPadding: EdgeInsets.all(15),
-                    label: Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0,8,8,8),
-                      child: Text('Search Location', style: TextStyle(fontSize: 20),),
-                    ),
+                    label: Text('Search Location', style: TextStyle(fontSize: 20),),
                     border: InputBorder.none,
                     // border: OutlineInputBorder(
                     //   borderRadius: BorderRadius.circular(20)
