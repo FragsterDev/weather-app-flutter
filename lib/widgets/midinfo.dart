@@ -31,7 +31,7 @@ class MidInfo extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SizedBox(width:20,),
-                      Text('11:25 AM',style: TextStyle(color: Color.fromARGB(255, 10, 8, 8), fontSize: 20),),
+                      Text('11:25 AM',style: TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),),
                       SizedBox(width:25,),
                       Text('4', style: TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),),
                       SizedBox(width:65,),
