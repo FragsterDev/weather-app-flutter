@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class MidInfo extends StatelessWidget {
   final String time;
-  final double uvIndex;
   final double rainChance;
-  final int aqi;
+  final double low;
+  final double high;
 
   const MidInfo({
     Key? key,
     required this.time,
-    required this.uvIndex,
+    required this.high,
     required this.rainChance,
-    required this.aqi,
+    required this.low,
   }) : super(key: key);
 
   @override
@@ -25,39 +25,51 @@ class MidInfo extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('TIME', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
-                Text('UV', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
-                Text('%RAIN', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
-                Text('AQ', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                Column(
+                  children: [
+                    Text('TIME', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text(
+                      time,
+                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text('HIGH', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text(
+                      "${high.toStringAsFixed(1)}",
+                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text('LOW', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text(
+                      "${low.toStringAsFixed(1)}",
+                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text('HUMIDITY', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text(
+                      '${rainChance.toStringAsFixed(1)}%',
+                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+              ),
+
+                  ],
+                ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                time,
-                style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
-              ),
-              Text(
-                uvIndex.toStringAsFixed(1),
-                style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
-              ),
-              Text(
-                '${rainChance.toStringAsFixed(1)}%',
-                style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
-              ),
-              Text(
-                aqi.toString(),
-                style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
-              ),
-            ],
-          ),
+          ),  
         ],
       ),
     );

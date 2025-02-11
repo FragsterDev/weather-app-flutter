@@ -61,9 +61,9 @@ class _WeatherPageState extends State<WeatherPage> {
             TemperatureDisplay(temp: _weather?.temperature ?? 0),
             MidInfo(
               time: _weather?.time ?? "--:--",
-              uvIndex: 0.0,
-              rainChance: 0.0,
-              aqi: 0,
+              high: _weather?.high ?? 0.0,
+              low: _weather?.low ?? 0.0,
+              rainChance: _weather?.humidity ?? 0.0,
             ),
             SizedBox(height: 16,),
             BottomInfo(
