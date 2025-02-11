@@ -18,14 +18,13 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-
   final WeatherService _weatherService = WeatherService();
   WeatherModel? _weather;
 
-  String _city = "Pune"; //Default city
+  String _city = ""; //Default city
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _fetchWeather();
   }
@@ -37,7 +36,7 @@ class _WeatherPageState extends State<WeatherPage> {
     });
   }
 
-  void _updateCity(String newCity){
+  void _updateCity(String newCity) {
     setState(() {
       _city = newCity;
       _fetchWeather();
@@ -51,33 +50,41 @@ class _WeatherPageState extends State<WeatherPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-          children: [
-            SizedBox(height: 10,),
-            Searchbar(onCityChanged: _updateCity),
-            SizedBox(height: 35),
-            Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),
-            SizedBox(height: 30),
-            City(cityName: _weather?.cityName ?? "---"),
-            TemperatureDisplay(temp: _weather?.temperature ?? 0, feels: _weather?.temperature ?? 0,),
-            MidInfo(
-              time: _weather?.time ?? "--:--",
-              high: _weather?.high ?? 0.0,
-              low: _weather?.low ?? 0.0,
-              rainChance: _weather?.humidity ?? 0.0,
-              visibility: _weather?.visibility ?? 0.0,
-              condition: _weather?.condition ?? 'unknown',
-            ),
-            SizedBox(height: 16,),
-            BottomInfo(
-              sunriseTime: _weather?.sunrise ?? "--:--",
-              sunsetTime: _weather?.sunset ?? "--:--",
-              windSpeed: _weather?.windSpeed ?? 0.0,
-              windDirection: _weather?.windDirection ?? "N",
-              pressure: _weather?.pressure ?? 0.0,
-            ),
-          ],
-                ),
-        ),),
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Searchbar(onCityChanged: _updateCity),
+              SizedBox(height: 35),
+              Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),
+              SizedBox(height: 30),
+              City(cityName: _weather?.cityName ?? "---"),
+              TemperatureDisplay(
+                temp: _weather?.temperature ?? 0,
+                feels: _weather?.temperature ?? 0,
+              ),
+              MidInfo(
+                time: _weather?.time ?? "--:--",
+                high: _weather?.high ?? 0.0,
+                low: _weather?.low ?? 0.0,
+                rainChance: _weather?.humidity ?? 0.0,
+                visibility: _weather?.visibility ?? 0.0,
+                condition: _weather?.condition ?? 'unknown',
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              BottomInfo(
+                sunriseTime: _weather?.sunrise ?? "--:--",
+                sunsetTime: _weather?.sunset ?? "--:--",
+                windSpeed: _weather?.windSpeed ?? 0.0,
+                windDirection: _weather?.windDirection ?? "N",
+                pressure: _weather?.pressure ?? 0.0,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
