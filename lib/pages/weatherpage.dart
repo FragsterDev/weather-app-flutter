@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:weather/weather.dart';
 import '../model/weather_model.dart';
 import '../services/weather_service.dart';
 import 'package:weather_app/widgets/temparature_display.dart';
