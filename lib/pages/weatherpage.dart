@@ -58,12 +58,14 @@ class _WeatherPageState extends State<WeatherPage> {
             Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),
             SizedBox(height: 30),
             City(cityName: _weather?.cityName ?? "---"),
-            TemperatureDisplay(temp: _weather?.temperature ?? 0),
+            TemperatureDisplay(temp: _weather?.temperature ?? 0, feels: _weather?.temperature ?? 0,),
             MidInfo(
               time: _weather?.time ?? "--:--",
               high: _weather?.high ?? 0.0,
               low: _weather?.low ?? 0.0,
               rainChance: _weather?.humidity ?? 0.0,
+              visibility: _weather?.visibility ?? 0.0,
+              condition: _weather?.condition ?? 'unknown',
             ),
             SizedBox(height: 16,),
             BottomInfo(

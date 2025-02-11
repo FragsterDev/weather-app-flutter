@@ -13,6 +13,9 @@ class WeatherModel {
   final String windDirection;
   final double high;
   final double low;
+  final String condition;
+  final double visibility;
+  final double feelsLike;
 
   WeatherModel({
     required this.cityName,
@@ -27,6 +30,9 @@ class WeatherModel {
     required this.windDirection,
     required this.high,
     required this.low,
+    required this.feelsLike,
+    required this.condition,
+    required this.visibility,
   });
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
@@ -55,6 +61,9 @@ class WeatherModel {
       windDirection: _getWindDirection(json['wind']?['deg'] ?? 0), // ✅ Corrected key
       high: json['main']?['temp_max']?.toDouble() ?? 0.0,
       low: json['main']?['temp_min']?.toDouble() ?? 0.0,
+      feelsLike: json['main']?['feels_like']?.toDouble() ?? 0.0,
+      visibility: json['visibility']?.toDouble() ?? 0.0,
+      condition: json['weather']?[0]['main'] ?? 'unknown',
     );
   }
 

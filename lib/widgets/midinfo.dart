@@ -5,6 +5,8 @@ class MidInfo extends StatelessWidget {
   final double rainChance;
   final double low;
   final double high;
+  final String condition;
+  final double visibility;
 
   const MidInfo({
     Key? key,
@@ -12,6 +14,8 @@ class MidInfo extends StatelessWidget {
     required this.high,
     required this.rainChance,
     required this.low,
+    required this.condition,
+    required this.visibility,
   }) : super(key: key);
 
   @override
@@ -31,8 +35,10 @@ class MidInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('TIME', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    SizedBox(height: 10,),
                     Text(
                       time,
                       style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
@@ -41,18 +47,20 @@ class MidInfo extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Text('HIGH', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text('COND.', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    SizedBox(height: 10,),
                     Text(
-                      "${high.toStringAsFixed(1)}",
+                      condition,
                       style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
                     ),
                   ],
                 ),
                 Column(
                   children: [
-                    Text('LOW', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text('VISIBILITY', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    SizedBox(height: 10,),
                     Text(
-                      "${low.toStringAsFixed(1)}",
+                      "${(visibility/1000).toInt()} km",
                       style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
                     ),
                   ],
@@ -60,8 +68,9 @@ class MidInfo extends StatelessWidget {
                 Column(
                   children: [
                     Text('HUMIDITY', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    SizedBox(height: 10,),
                     Text(
-                      '${rainChance.toStringAsFixed(1)}%',
+                      '${(rainChance).toInt()}%',
                       style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
               ),
 
