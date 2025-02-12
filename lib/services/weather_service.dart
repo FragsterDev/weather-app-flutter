@@ -16,14 +16,38 @@ class WeatherService {
     }
   }
 
-  Future<WeatherModel?> getWeather(String city) async {
+  Future<Map<String, double>?> getCityCoordinates(String city) async {
+    if (!await checkInternetConnection()) {
+      print("No internet connection");
+      return null;
+    }
+
+    try {
+      String url = '$baseUrl?q=$city&appid=$apiKey';
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        double lat = data['coord']['lat'];
+        double lon = data['coord']['lon'];
+        return {'lat': lat, 'lon': lon};
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error fetching city coordinates: $e');
+      return null;
+    }
+  }
+
+  Future<WeatherModel?> getWeather(double lat, double long) async {
     if(!await checkInternetConnection()){
       print("No internet connection");
       return null;
     }
 
     try {
-      String url = '$baseUrl?q=$city&appid=$apiKey&units=metric';
+      String url = '$baseUrl?lat=$lat&lon=$long&appid=$apiKey&units=metric';
       print(url);
       final response = await http.get(
         Uri.parse(url),

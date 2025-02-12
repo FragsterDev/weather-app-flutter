@@ -9,6 +9,8 @@ import '../widgets/weatherimage.dart';
 import '../widgets/cityshow.dart';
 import '../widgets/midinfo.dart';
 import '../widgets/bottominfo.dart';
+import '../services/location_service.dart';
+import 'package:geolocator/geolocator.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -19,36 +21,79 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   final WeatherService _weatherService = WeatherService();
+  final LocationService _locationService = LocationService();
   WeatherModel? _weather;
+
+  double? _latitude;
+  double? _longitude;
 
   String _city = ""; //Default city
 
   @override
   void initState() {
     super.initState();
-    _fetchWeather();
+    _initialiseLocationAndFetchWeather();
+  }
+
+  Future<void> _initialiseLocationAndFetchWeather() async {
+    // final weatherData = await _weatherService.getWeather(26.727100,88.395287);
+    // setState(() {
+    //   _weather = weatherData;
+    // });
+    try {
+      Position? position = await _locationService.getCurrentLocation();
+      if(position != null){
+        setState(() {
+          _latitude = position.latitude;
+          _longitude = position.longitude;
+        });
+        _fetchWeather();
+      } else {
+        print('Could not get location');
+      }
+    } catch(e){
+      print("Error: $e");
+    }
   }
 
   Future<void> _fetchWeather() async {
-    final weatherData = await _weatherService.getWeather(_city);
+    if(_latitude == null || _longitude == null){
+      print("Waiting  for location...");
+      return;
+    }
+    final weatherData = await _weatherService.getWeather(_latitude!, _longitude!);
     setState(() {
       _weather = weatherData;
     });
   }
 
-  void _updateCity(String newCity) {
+   Future<void> _updateCity(String newCity) async {
     setState(() {
       _city = newCity;
-      _fetchWeather();
+      // _fetchWeather();
     });
-  }
 
+    final coordinates = await _weatherService.getCityCoordinates(newCity);
+
+    if(coordinates != null){
+      setState(() {
+        _latitude = coordinates['lat'];
+        _longitude = coordinates['lon'];
+      });
+
+      _fetchWeather();
+    } else {
+      print('Could not fetch coordinates for the city');
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: _weather == null ? const Center(child: CircularProgressIndicator(),) :
+         SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
