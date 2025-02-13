@@ -11,6 +11,7 @@ import '../widgets/midinfo.dart';
 import '../widgets/bottominfo.dart';
 import '../services/location_service.dart';
 import 'package:geolocator/geolocator.dart';
+// import '../widgets/detect_location.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -23,6 +24,8 @@ class _WeatherPageState extends State<WeatherPage> {
   final WeatherService _weatherService = WeatherService();
   final LocationService _locationService = LocationService();
   WeatherModel? _weather;
+
+  bool _isLoading = false;
 
   double? _latitude;
   double? _longitude;
@@ -40,6 +43,11 @@ class _WeatherPageState extends State<WeatherPage> {
     // setState(() {
     //   _weather = weatherData;
     // });
+
+    setState(() {
+      _isLoading = true; // Start loading indicator
+    });
+
     try {
       Position? position = await _locationService.getCurrentLocation();
       if(position != null){
@@ -64,12 +72,14 @@ class _WeatherPageState extends State<WeatherPage> {
     final weatherData = await _weatherService.getWeather(_latitude!, _longitude!);
     setState(() {
       _weather = weatherData;
+      _isLoading = false;
     });
   }
 
    Future<void> _updateCity(String newCity) async {
     setState(() {
       _city = newCity;
+      _isLoading = true;
       // _fetchWeather();
     });
 
@@ -84,6 +94,31 @@ class _WeatherPageState extends State<WeatherPage> {
       _fetchWeather();
     } else {
       print('Could not fetch coordinates for the city');
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _onRefresh() async {
+    setState(() {
+      _isLoading = true; // Start loading when user pulls to refresh
+    });
+    await _initialiseLocationAndFetchWeather();  // Fetch weather data again
+  }
+
+    // Handle current location button tap
+  Future<void> _fetchWeatherForCurrentLocation() async {
+    Position? position = await _locationService.getCurrentLocation();
+    if (position != null) {
+      setState(() {
+        _latitude = position.latitude;
+        _longitude = position.longitude;
+        _isLoading = true;
+      });
+      _fetchWeather();
+    } else {
+      print("Error fetching current location");
     }
   }
   
@@ -92,43 +127,48 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
-        child: _weather == null ? const Center(child: CircularProgressIndicator(),) :
-         SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Searchbar(onCityChanged: _updateCity),
-              SizedBox(height: 35),
-              Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),
-              SizedBox(height: 30),
-              City(cityName: _weather?.cityName ?? "---"),
-              TemperatureDisplay(
-                temp: _weather?.temperature ?? 0,
-                feels: _weather?.temperature ?? 0,
-              ),
-              MidInfo(
-                time: _weather?.time ?? "--:--",
-                high: _weather?.high ?? 0.0,
-                low: _weather?.low ?? 0.0,
-                rainChance: _weather?.humidity ?? 0.0,
-                visibility: _weather?.visibility ?? 0.0,
-                condition: _weather?.condition ?? 'unknown',
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              BottomInfo(
-                sunriseTime: _weather?.sunrise ?? "--:--",
-                sunsetTime: _weather?.sunset ?? "--:--",
-                windSpeed: _weather?.windSpeed ?? 0.0,
-                windDirection: _weather?.windDirection ?? "N",
-                pressure: _weather?.pressure ?? 0.0,
-              ),
-            ],
-          ),
-        ),
+        child: _isLoading ? const Center(child: CircularProgressIndicator(),) :
+         RefreshIndicator(
+          onRefresh: _onRefresh,
+           child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Searchbar(onCityChanged: _updateCity,),
+                SizedBox(height: 35),
+                // LocationButton(),
+                Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),
+                SizedBox(height: 30),
+                City(cityName: _weather?.cityName ?? "---"),
+                TemperatureDisplay(
+                  temp: _weather?.temperature ?? 0,
+                  feels: _weather?.temperature ?? 0,
+                ),
+                MidInfo(
+                  time: _weather?.time ?? "--:--",
+                  high: _weather?.high ?? 0.0,
+                  low: _weather?.low ?? 0.0,
+                  rainChance: _weather?.humidity ?? 0.0,
+                  visibility: _weather?.visibility ?? 0.0,
+                  condition: _weather?.condition ?? 'unknown',
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                BottomInfo(
+                  sunriseTime: _weather?.sunrise ?? "--:--",
+                  sunsetTime: _weather?.sunset ?? "--:--",
+                  windSpeed: _weather?.windSpeed ?? 0.0,
+                  windDirection: _weather?.windDirection ?? "N",
+                  pressure: _weather?.pressure ?? 0.0,
+                ),
+                SizedBox(height: 50,),
+              ],
+            ),
+                   ),
+         ),
       ),
     );
   }

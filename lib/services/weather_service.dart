@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 class WeatherService {
   final String apiKey = 'b571b2c26a30550e38a048efce0540e4';
   final String  baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  final String baseUrlFind = 'https://api.openweathermap.org/data/2.5/find';
 
    Future<bool> checkInternetConnection() async {
     try {
@@ -13,6 +14,36 @@ class WeatherService {
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } catch (_) {
       return false;
+    }
+  }
+
+  Future<List<String>> fetchCitySuggestions(String query) async {
+    // If the query is empty, return an empty list
+    if (query.isEmpty) {
+      return [];
+    }
+
+    try {
+      final url = Uri.parse('$baseUrlFind?q=$query&appid=$apiKey&limit=5');  // Limit to 5 suggestions
+      final response = await http.get(url);
+
+      // If the response is successful (status code 200)
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        // Parse the city names from the response
+        List<String> suggestions = [];
+        for (var city in data['list']) {
+          suggestions.add(city['name']);  // Add city name to suggestions list
+        }
+
+        return suggestions;
+      } else {
+        throw Exception('Failed to load city suggestions');
+      }
+    } catch (e) {
+      print("Error fetching city suggestions: $e");
+      return [];
     }
   }
 
