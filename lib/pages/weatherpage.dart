@@ -129,56 +129,61 @@ class _WeatherPageState extends State<WeatherPage> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      body: SafeArea(
-        child: _isLoading ? const Center(child: CircularProgressIndicator(
-          backgroundColor: Colors.transparent,
-          color: Colors.orange,
-        ),) :
-         RefreshIndicator(
-          color: Colors.orange,
-          backgroundColor: Colors.white,
-          onRefresh: _onRefresh,
-           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Searchbar(onCityChanged: _updateCity,onCurrentLocationTapped: _initialiseLocationAndFetchWeather,),
-                SizedBox(height: 35),
-                // LocationButton(),
-                Weatherimage(condition: _weather?.weatherCondition ?? "Clear", timeOfDay: DateTime.now(),),
-                SizedBox(height: 30),
-                City(cityName: _weather?.cityName ?? "---"),
-                TemperatureDisplay(
-                  temp: _weather?.temperature ?? 0,
-                  feels: _weather?.temperature ?? 0,
-                ),
-                MidInfo(
-                  time: _weather?.time ?? "--:--",
-                  high: _weather?.high ?? 0.0,
-                  low: _weather?.low ?? 0.0,
-                  rainChance: _weather?.humidity ?? 0.0,
-                  visibility: _weather?.visibility ?? 0.0,
-                  condition: _weather?.condition ?? 'unknown',
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                BottomInfo(
-                  sunriseTime: _weather?.sunrise ?? "--:--",
-                  sunsetTime: _weather?.sunset ?? "--:--",
-                  windSpeed: _weather?.windSpeed ?? 0.0,
-                  windDirection: _weather?.windDirection ?? "N",
-                  pressure: _weather?.pressure ?? 0.0,
-                ),
-                SizedBox(height: 50,),
-              ],
-            ),
-                   ),
-         ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        body: SafeArea(
+          child: _isLoading ? const Center(child: CircularProgressIndicator(
+            backgroundColor: Colors.transparent,
+            color: Colors.orange,
+          ),) :
+           RefreshIndicator(
+            color: Colors.orange,
+            backgroundColor: Colors.white,
+            onRefresh: _onRefresh,
+             child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Searchbar(onCityChanged: _updateCity,onCurrentLocationTapped: _initialiseLocationAndFetchWeather,),
+                  SizedBox(height: 35),
+                  // LocationButton(),
+                  Weatherimage(condition: _weather?.weatherCondition ?? "Clear", timeOfDay: DateTime.now(),),
+                  SizedBox(height: 30),
+                  City(cityName: _weather?.cityName ?? "---"),
+                  TemperatureDisplay(
+                    temp: _weather?.temperature ?? 0,
+                    feels: _weather?.temperature ?? 0,
+                  ),
+                  MidInfo(
+                    time: _weather?.time ?? "--:--",
+                    high: _weather?.high ?? 0.0,
+                    low: _weather?.low ?? 0.0,
+                    rainChance: _weather?.humidity ?? 0.0,
+                    visibility: _weather?.visibility ?? 0.0,
+                    condition: _weather?.condition ?? 'unknown',
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  BottomInfo(
+                    sunriseTime: _weather?.sunrise ?? "--:--",
+                    sunsetTime: _weather?.sunset ?? "--:--",
+                    windSpeed: _weather?.windSpeed ?? 0.0,
+                    windDirection: _weather?.windDirection ?? "N",
+                    pressure: _weather?.pressure ?? 0.0,
+                  ),
+                  SizedBox(height: 50,),
+                ],
+              ),
+                     ),
+           ),
+        ),
       ),
     );
   }
