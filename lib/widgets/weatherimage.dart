@@ -36,6 +36,9 @@ class Weatherimage extends StatelessWidget {
       case 'haze':
         imagePath = 'assets/icons/haze.png';
         break;
+      case 'smoke':
+        imagePath = 'assets/icons/smoke.png';
+        break;
       default:
         imagePath = 'assets/icons/Group.png'; // Default image
     }
