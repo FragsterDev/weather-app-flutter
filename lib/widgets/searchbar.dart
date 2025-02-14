@@ -87,76 +87,79 @@ class _SearchbarState extends State<Searchbar> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 370,
-      child: Column(
-        children: [
-          TypeAheadField<String>(
-            suggestionsBoxDecoration: SuggestionsBoxDecoration(
-              elevation: 0,
-              borderRadius: BorderRadius.horizontal(left: Radius.circular(15), right: Radius.circular(15)),
-              color: const Color.fromARGB(255, 247, 247, 247)
-            ),
-            textFieldConfiguration: TextFieldConfiguration(
-              controller: _controller,
-              focusNode: _focusNode,
-              decoration: InputDecoration(
-                hintText: 'Search Location',
-                hintStyle: TextStyle(color: Color.fromARGB(255, 196, 196, 196)),
-                filled: true,
-                fillColor: Color.fromARGB(255, 253, 252, 252),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none
-                ),
-                suffixIcon: IconButton(
-                  onPressed: _submitSearch,
-                  icon: Icon(Icons.search),
-                  color: Color.fromARGB(255, 196, 196, 196),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0,17,0,0),
+      child: SizedBox(
+        width: 370,
+        child: Column(
+          children: [
+            TypeAheadField<String>(
+              suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                elevation: 0,
+                borderRadius: BorderRadius.horizontal(left: Radius.circular(15), right: Radius.circular(15)),
+                color: const Color.fromARGB(255, 247, 247, 247)
+              ),
+              textFieldConfiguration: TextFieldConfiguration(
+                controller: _controller,
+                focusNode: _focusNode,
+                decoration: InputDecoration(
+                  hintText: 'Search Location',
+                  hintStyle: TextStyle(color: Color.fromARGB(255, 196, 196, 196)),
+                  filled: true,
+                  fillColor: Color.fromARGB(255, 253, 252, 252),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: _submitSearch,
+                    icon: Icon(Icons.search),
+                    color: Color.fromARGB(255, 196, 196, 196),
+                  ),
                 ),
               ),
-            ),
-            suggestionsCallback: (query) async {
-              if (_isInputFocused && query.isEmpty) {
-                // Show current location button as first item
-                return ['__current_location__', ..._searchedCities];
-              }
-              
-              if (query.isEmpty) {
-                return _searchedCities;
-              }
-
-              List<String> filteredCities = _searchedCities
-                  .where((city) => city.toLowerCase().contains(query.toLowerCase()))
-                  .toList();
-
-              if (filteredCities.isNotEmpty) {
-                return filteredCities;
-              }
-
-              return _getSuggestions(query);
-            },
-            itemBuilder: (context, String suggestion) {
-              if (suggestion == '__current_location__') {
+              suggestionsCallback: (query) async {
+                if (_isInputFocused && query.isEmpty) {
+                  // Show current location button as first item
+                  return ['__current_location__', ..._searchedCities];
+                }
+                
+                if (query.isEmpty) {
+                  return _searchedCities;
+                }
+      
+                List<String> filteredCities = _searchedCities
+                    .where((city) => city.toLowerCase().contains(query.toLowerCase()))
+                    .toList();
+      
+                if (filteredCities.isNotEmpty) {
+                  return filteredCities;
+                }
+      
+                return _getSuggestions(query);
+              },
+              itemBuilder: (context, String suggestion) {
+                if (suggestion == '__current_location__') {
+                  return ListTile(
+                    leading: Icon(Icons.location_on),
+                    title: Text('Use Current Location'),
+                  );
+                }
                 return ListTile(
-                  leading: Icon(Icons.location_on),
-                  title: Text('Use Current Location'),
+                  title: Text(suggestion),
                 );
-              }
-              return ListTile(
-                title: Text(suggestion),
-              );
-            },
-            onSuggestionSelected: (String selectedCity) {
-              if (selectedCity == '__current_location__') {
-                widget.onCurrentLocationTapped();
-                return;
-              }
-              _controller.text = selectedCity;
-              _submitSearch();
-            },
-          ),
-        ],
+              },
+              onSuggestionSelected: (String selectedCity) {
+                if (selectedCity == '__current_location__') {
+                  widget.onCurrentLocationTapped();
+                  return;
+                }
+                _controller.text = selectedCity;
+                _submitSearch();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

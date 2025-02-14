@@ -132,8 +132,13 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
-        child: _isLoading ? const Center(child: CircularProgressIndicator(),) :
+        child: _isLoading ? const Center(child: CircularProgressIndicator(
+          backgroundColor: Colors.transparent,
+          color: Colors.orange,
+        ),) :
          RefreshIndicator(
+          color: Colors.orange,
+          backgroundColor: Colors.white,
           onRefresh: _onRefresh,
            child: SingleChildScrollView(
             child: Column(
