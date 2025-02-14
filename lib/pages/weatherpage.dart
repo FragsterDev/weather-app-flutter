@@ -109,6 +109,11 @@ class _WeatherPageState extends State<WeatherPage> {
 
     // Handle current location button tap
   Future<void> _fetchWeatherForCurrentLocation() async {
+
+    setState(() {
+      _isLoading == true;
+    });
+
     Position? position = await _locationService.getCurrentLocation();
     if (position != null) {
       setState(() {
@@ -136,7 +141,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Searchbar(onCityChanged: _updateCity,),
+                Searchbar(onCityChanged: _updateCity,onCurrentLocationTapped: _initialiseLocationAndFetchWeather,),
                 SizedBox(height: 35),
                 // LocationButton(),
                 Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),

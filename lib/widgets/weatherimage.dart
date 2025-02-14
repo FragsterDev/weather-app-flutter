@@ -15,16 +15,19 @@ class Weatherimage extends StatelessWidget {
         imagePath = 'assets/icons/Group.png';
         break;
       case 'clouds':
-        imagePath = 'assets/icons/Group.png';
+        imagePath = 'assets/icons/clouds.png';
         break;
       case 'rain':
-        imagePath = 'assets/icons/Group.png';
+        imagePath = 'assets/icons/heavy-rain.png';
         break;
       case 'snow':
-        imagePath = 'assets/icons/Group.png';
+        imagePath = 'assets/icons/snow.png';
         break;
       case 'thunderstorm':
-        imagePath = 'assets/icons/Group.png';
+        imagePath = 'assets/icons/storm.png';
+        break;
+      case 'haze':
+        imagePath = 'assets/icons/haze.png';
         break;
       default:
         imagePath = 'assets/icons/Group.png'; // Default image
