@@ -25,7 +25,7 @@ class MidInfo extends StatelessWidget {
       height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color.fromARGB(255, 248, 248, 248),
+        color: const Color.fromARGB(255, 253, 252, 252),
       ),
       child: Column(
         children: [
@@ -37,31 +37,31 @@ class MidInfo extends StatelessWidget {
                 Column(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('TIME', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text('TIME', style: TextStyle(color: Color.fromARGB(255, 196, 196, 196))),
                     SizedBox(height: 10,),
                     Text(
                       time,
-                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                      style: const TextStyle(color: Color.fromARGB(255, 154, 154, 154), fontSize: 20),
                     ),
                   ],
                 ),
                 Column(
                   children: [
-                    Text('COND.', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text('COND.', style: TextStyle(color: Color.fromARGB(255, 196, 196, 196))),
                     SizedBox(height: 10,),
                     Text(
                       condition,
-                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                      style: const TextStyle(color: Color.fromARGB(255, 154, 154, 154), fontSize: 20),
                     ),
                   ],
                 ),
                 Column(
                   children: [
-                    Text('VISIBILITY', style: TextStyle(color: Color.fromARGB(255, 182, 182, 182))),
+                    Text('VISIBILITY', style: TextStyle(color: Color.fromARGB(255, 196, 196, 196))),
                     SizedBox(height: 10,),
                     Text(
                       "${(visibility/1000).toInt()} km",
-                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                      style: const TextStyle(color: Color.fromARGB(255, 154, 154, 154), fontSize: 20),
                     ),
                   ],
                 ),
@@ -71,7 +71,7 @@ class MidInfo extends StatelessWidget {
                     SizedBox(height: 10,),
                     Text(
                       '${(rainChance).toInt()}%',
-                      style: const TextStyle(color: Color.fromARGB(255, 170, 170, 170), fontSize: 20),
+                      style: const TextStyle(color: Color.fromARGB(255, 154, 154, 154), fontSize: 20),
               ),
 
                   ],

@@ -144,7 +144,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 Searchbar(onCityChanged: _updateCity,onCurrentLocationTapped: _initialiseLocationAndFetchWeather,),
                 SizedBox(height: 35),
                 // LocationButton(),
-                Weatherimage(condition: _weather?.weatherCondition ?? "Clear"),
+                Weatherimage(condition: _weather?.weatherCondition ?? "Clear", timeOfDay: DateTime.now(),),
                 SizedBox(height: 30),
                 City(cityName: _weather?.cityName ?? "---"),
                 TemperatureDisplay(

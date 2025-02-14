@@ -23,7 +23,7 @@ class BottomInfo extends StatelessWidget {
       height: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color.fromARGB(255, 248, 248, 248),
+        color: const Color.fromARGB(255, 253, 252, 252),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -33,26 +33,26 @@ class BottomInfo extends StatelessWidget {
               const SizedBox(height: 5),
               Column(
                 children: [
-                  const Text('Sunrise', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 182, 182, 182))),
+                  const Text('Sunrise', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 196, 196, 196))),
                   SizedBox(
                     width: 90,
                     height: 90,
                     child: Image.asset('assets/icons/sunrise.png'),
                   ),
-                  Text(sunriseTime, style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 174, 174, 174))),
+                  Text(sunriseTime, style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 154, 154, 154))),
                 ],
               ),
               const SizedBox(height: 12),
               Column(
                 children: [
-                  const Text('Wind', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 182, 182, 182))),
+                  const Text('Wind', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 196, 196, 196))),
                   SizedBox(
                     width: 70,
                     height: 70,
                     child: Image.asset('assets/icons/wind.png'),
                   ),
                   Text('${windSpeed.toStringAsFixed(1)} km/h $windDirection', 
-                      style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 174, 174, 174))),
+                      style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 154, 154, 154))),
                 ],
               ),
             ],
@@ -62,25 +62,25 @@ class BottomInfo extends StatelessWidget {
               const SizedBox(height: 5),
               Column(
                 children: [
-                  const Text('Sunset', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 182, 182, 182))),
+                  const Text('Sunset', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 196, 196, 196))),
                   SizedBox(
                     width: 90,
                     height: 90,
                     child: Image.asset('assets/icons/sunset.png'),
                   ),
-                  Text(sunsetTime, style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 174, 174, 174))),
+                  Text(sunsetTime, style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 154, 154, 154))),
                 ],
               ),
               const SizedBox(height: 11),
               Column(
                 children: [
-                  const Text('Pressure', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 182, 182, 182))),
+                  const Text('Pressure', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 196, 196, 196))),
                   SizedBox(
                     width: 70,
                     height: 70,
                     child: Image.asset('assets/icons/pressure.png'),
                   ),
-                  Text('${pressure.toStringAsFixed(0)} hPa', style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 174, 174, 174))),
+                  Text('${pressure.toStringAsFixed(0)} hPa', style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 154, 154, 154))),
                 ],
               )
             ],
