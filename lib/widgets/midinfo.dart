@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class MidInfo extends StatelessWidget {
   final String time;
   final double rainChance;
-  final double low;
-  final double high;
+  // final double low;
+  // final double high;
   final String condition;
   final double visibility;
 
   const MidInfo({
     Key? key,
     required this.time,
-    required this.high,
+    // required this.high,
     required this.rainChance,
-    required this.low,
+    // required this.low,
     required this.condition,
     required this.visibility,
   }) : super(key: key);
