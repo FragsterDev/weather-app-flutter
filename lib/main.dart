@@ -17,7 +17,12 @@ final lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.white
-  )
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    fillColor: const Color.fromARGB(255, 255, 255, 255),
+    // filled: true
+  ),
+  useMaterial3: false
   // More light theme properties here
 );
 
