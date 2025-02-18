@@ -108,7 +108,7 @@ class _SearchbarState extends State<Searchbar> {
                   hintText: 'Search Location',
                   hintStyle: TextStyle(color: Color.fromARGB(255, 196, 196, 196)),
                   filled: true,
-                  fillColor: Theme.of(context).primaryColor,
+                  fillColor: Theme.of(context).cardColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none

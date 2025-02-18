@@ -14,10 +14,14 @@ final lightTheme = ThemeData(
   brightness: Brightness.light,
   cardColor: Colors.white,
   primaryColor: Colors.white,
-  scaffoldBackgroundColor: Colors.white,
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.white
-  )
+  // scaffoldBackgroundColor: Colors.white,
+  // appBarTheme: AppBarTheme(
+  //   backgroundColor: Colors.white
+  // ),
+  // inputDecorationTheme: InputDecorationTheme(
+  //   fillColor: const Color.fromARGB(255, 255, 255, 255),
+  //   // filled: true
+  // ),
   // More light theme properties here
 );
 
