@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:weather_app/main.dart';
 import '../model/weather_model.dart';
 import '../services/weather_service.dart';
 import 'package:weather_app/widgets/temparature_display.dart';
@@ -11,6 +12,7 @@ import '../widgets/midinfo.dart';
 import '../widgets/bottominfo.dart';
 import '../services/location_service.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 // import '../widgets/detect_location.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -129,12 +131,19 @@ class _WeatherPageState extends State<WeatherPage> {
   
   @override
   Widget build(BuildContext context) {
+
+  final themeProvider = Provider.of<ThemeProvider>(context);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Theme.of(context).primaryColor,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          title: Text('Weather Wise'),
+        ),
         body: SafeArea(
           child: _isLoading ? const Center(child: CircularProgressIndicator(
             backgroundColor: Colors.transparent,
@@ -147,9 +156,9 @@ class _WeatherPageState extends State<WeatherPage> {
              child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
                   Searchbar(onCityChanged: _updateCity,onCurrentLocationTapped: _initialiseLocationAndFetchWeather,),
                   SizedBox(height: 35),
                   // LocationButton(),
@@ -181,6 +190,33 @@ class _WeatherPageState extends State<WeatherPage> {
               ),
             ),
            ),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            // padding: EdgeInsets.fromLTRB(2, 20, 0, 0),
+            children: [
+              // const DrawerHeader(child: Text('Drawer Header'))
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Settings',style: TextStyle(fontSize: 22),),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Theme', style: TextStyle(fontSize: 20),),
+                    Switch(
+                      value: themeProvider.themeMode == ThemeMode.dark, 
+                      onChanged: (_) {
+                        themeProvider.toggleTheme();
+                      }
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

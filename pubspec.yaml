@@ -41,6 +41,7 @@ dependencies:
   geolocator: ^10.1.0
   flutter_typeahead: ^4.0.0
   shared_preferences: ^2.5.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

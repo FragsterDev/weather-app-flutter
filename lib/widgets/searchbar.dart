@@ -87,6 +87,8 @@ class _SearchbarState extends State<Searchbar> {
 
   @override
   Widget build(BuildContext context) {
+    print(Theme.of(context).cardColor);
+    print(Theme.of(context).primaryColor);
     return Padding(
       padding: const EdgeInsets.fromLTRB(0,17,0,0),
       child: SizedBox(
@@ -97,7 +99,7 @@ class _SearchbarState extends State<Searchbar> {
               suggestionsBoxDecoration: SuggestionsBoxDecoration(
                 elevation: 0,
                 borderRadius: BorderRadius.horizontal(left: Radius.circular(15), right: Radius.circular(15)),
-                color: const Color.fromARGB(255, 247, 247, 247)
+                color: Theme.of(context).primaryColor,
               ),
               textFieldConfiguration: TextFieldConfiguration(
                 controller: _controller,
@@ -106,7 +108,7 @@ class _SearchbarState extends State<Searchbar> {
                   hintText: 'Search Location',
                   hintStyle: TextStyle(color: Color.fromARGB(255, 196, 196, 196)),
                   filled: true,
-                  fillColor: Color.fromARGB(255, 253, 252, 252),
+                  fillColor: Theme.of(context).primaryColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none
