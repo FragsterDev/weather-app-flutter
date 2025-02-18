@@ -142,7 +142,16 @@ class _WeatherPageState extends State<WeatherPage> {
         backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
-          title: Text('Weather Wise'),
+          foregroundColor: Theme.of(context).brightness == Brightness.light 
+            ? Colors.black 
+            : Colors.white,
+          elevation: 0,
+          title: const Text(
+            'Weather Wise',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
         body: SafeArea(
           child: _isLoading ? const Center(child: CircularProgressIndicator(
