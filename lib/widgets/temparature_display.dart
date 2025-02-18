@@ -15,7 +15,7 @@ class TemperatureDisplay extends StatelessWidget {
           children: [
             const SizedBox(width: 35),
             Text(
-              temp.toStringAsFixed(1), // ✅ Convert temp to a string with 1 decimal place
+              temp.round().toString(), // ✅ Convert temp to a string
               style: const TextStyle(fontSize: 75, fontWeight: FontWeight.w500),
             ),
             const Text(
