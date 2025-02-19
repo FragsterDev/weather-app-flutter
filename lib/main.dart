@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './pages/weatherpage.dart';
 import 'package:provider/provider.dart';
+import './theme/custom_colors.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -14,21 +15,27 @@ final lightTheme = ThemeData(
   brightness: Brightness.light,
   cardColor: Colors.white,
   primaryColor: Colors.white,
-  // scaffoldBackgroundColor: Colors.white,
-  // appBarTheme: AppBarTheme(
-  //   backgroundColor: Colors.white
-  // ),
-  // inputDecorationTheme: InputDecorationTheme(
-  //   fillColor: const Color.fromARGB(255, 255, 255, 255),
-  //   // filled: true
-  // ),
-  // More light theme properties here
+  useMaterial3: true,
+  extensions: [
+    CustomColors(
+      searchBarColor: const Color.fromARGB(255, 245, 245, 245),  // Light grey for searchbar
+      midInfoColor: const Color.fromARGB(255, 245, 245, 245),    // Slightly darker grey for mid info
+      bottomInfoColor: const Color.fromARGB(255, 245, 245, 245)
+    )
+  ]
 );
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: const Color.fromARGB(255, 50, 50, 50),
   cardColor: const Color.fromARGB(255, 50, 50, 50),
+  extensions: [
+    CustomColors(
+      searchBarColor: const Color.fromARGB(255, 56, 56, 56),    // Dark grey for searchbar
+      midInfoColor: const Color.fromARGB(255, 56, 56, 56),      // Slightly darker for mid info
+      bottomInfoColor: const Color.fromARGB(255, 56, 56, 56),
+    )
+  ]
   // More dark theme properties here
 );
 

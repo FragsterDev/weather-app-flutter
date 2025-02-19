@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/custom_colors.dart';
 
 class MidInfo extends StatelessWidget {
   final String time;
@@ -25,7 +26,7 @@ class MidInfo extends StatelessWidget {
       height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).primaryColor,
+        color: Theme.of(context).extension<CustomColors>()?.midInfoColor,
       ),
       child: Column(
         children: [

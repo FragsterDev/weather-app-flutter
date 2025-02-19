@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/custom_colors.dart';
 
 class BottomInfo extends StatelessWidget {
   final String sunriseTime;
@@ -23,7 +24,7 @@ class BottomInfo extends StatelessWidget {
       height: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).primaryColor,
+        color: Theme.of(context).extension<CustomColors>()?.bottomInfoColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
