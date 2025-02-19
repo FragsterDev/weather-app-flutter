@@ -3,13 +3,18 @@ import './pages/weatherpage.dart';
 import 'package:provider/provider.dart';
 import './theme/custom_colors.dart';
 import './providers/theme_provider.dart';
+import './providers/temperature_unit_provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (_) => ThemeProvider(),
+  runApp(
+    MultiProvider(
+      providers: [
+      ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ChangeNotifierProvider(create: (_) => TemperatureUnitProvider())
+    ],
     child: MyApp(),
     )
-    );
+  );
 }
 
 final lightTheme = ThemeData(

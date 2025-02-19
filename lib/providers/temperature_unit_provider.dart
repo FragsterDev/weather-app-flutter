@@ -24,7 +24,19 @@ class TemperatureUnitProvider with ChangeNotifier {
     }
   }
 //wip
-  // String get unitSymbol(_unit){
+  String get unitSymbol {
+    switch (_unit) {
+      case TemperatureUnit.celcius:
+      return '°C';
+      case TemperatureUnit.fahrenheit:
+      return '°F';
+      case TemperatureUnit.kelvin:
+      return 'K';
+    }
+  }
 
-  // }
+  void setUnit(TemperatureUnit unit){
+    _unit = unit;
+    notifyListeners();
+  }
 }
