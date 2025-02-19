@@ -1,7 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'package:weather_app/main.dart';
 import '../model/weather_model.dart';
 import '../services/weather_service.dart';
 import 'package:weather_app/widgets/temparature_display.dart';
@@ -12,9 +9,7 @@ import '../widgets/midinfo.dart';
 import '../widgets/bottominfo.dart';
 import '../services/location_service.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:provider/provider.dart';
 import '../widgets/drawer.dart';
-// import '../widgets/detect_location.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -42,10 +37,6 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   Future<void> _initialiseLocationAndFetchWeather() async {
-    // final weatherData = await _weatherService.getWeather(26.727100,88.395287);
-    // setState(() {
-    //   _weather = weatherData;
-    // });
 
     setState(() {
       _isLoading = true; // Start loading indicator
