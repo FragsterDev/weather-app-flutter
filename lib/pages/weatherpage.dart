@@ -13,6 +13,7 @@ import '../widgets/bottominfo.dart';
 import '../services/location_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
+import '../widgets/drawer.dart';
 // import '../widgets/detect_location.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -132,8 +133,6 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
 
-  final themeProvider = Provider.of<ThemeProvider>(context);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -200,33 +199,7 @@ class _WeatherPageState extends State<WeatherPage> {
             ),
            ),
         ),
-        drawer: Drawer(
-          child: ListView(
-            // padding: EdgeInsets.fromLTRB(2, 20, 0, 0),
-            children: [
-              // const DrawerHeader(child: Text('Drawer Header'))
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Settings',style: TextStyle(fontSize: 22),),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Theme', style: TextStyle(fontSize: 20),),
-                    Switch(
-                      value: themeProvider.themeMode == ThemeMode.dark, 
-                      onChanged: (_) {
-                        themeProvider.toggleTheme();
-                      }
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+        drawer: DrawerWidget(),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './pages/weatherpage.dart';
 import 'package:provider/provider.dart';
 import './theme/custom_colors.dart';
+import './providers/theme_provider.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -38,17 +39,6 @@ final darkTheme = ThemeData(
   ]
   // More dark theme properties here
 );
-
-class ThemeProvider extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.light;
-
-  ThemeMode get themeMode => _themeMode;
-
-  void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-    notifyListeners();
-  }
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
