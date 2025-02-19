@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_app/theme/custom_colors.dart';
 import '../services/weather_service.dart';
 
 class Searchbar extends StatefulWidget {
@@ -108,7 +109,7 @@ class _SearchbarState extends State<Searchbar> {
                   hintText: 'Search Location',
                   hintStyle: TextStyle(color: Color.fromARGB(255, 196, 196, 196)),
                   filled: true,
-                  fillColor: Theme.of(context).cardColor,
+                  fillColor: Theme.of(context).extension<CustomColors>()?.searchBarColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none
